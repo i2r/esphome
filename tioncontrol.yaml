@@ -1,0 +1,28 @@
+substitutions:
+  node_name: tioncontrol
+  name: TionControl
+  board: lolin_s2_mini
+
+esp32:
+  board: $board
+
+packages:
+  ## Enable additional WiFi signal sensor. Comment next line to disable.
+  wifi_signal: github://dentra/esphome-tion/packages/wifi_signal.yaml
+  ## Enable additional Uptime sensor. Comment next line to disable.
+  uptime: github://dentra/esphome-tion/packages/uptime.yaml
+  ## Uncomment next line to enable additional restart button.
+  # restart: github://dentra/esphome-tion/packages/restart.yaml
+
+  # framework_arduino: !include packages/framework_arduino.yaml
+  framework_idf: !include packages/framework_idf.yaml
+  base: !include packages/base.yaml
+
+  tion4s_uart: !include packages/tion4s_uart.yaml
+
+# lolin_s2_mini specific
+uart:
+  id: uart_bus
+  tx_pin: 20
+  rx_pin: 19
+  baud_rate: 9600

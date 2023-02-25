@@ -1,0 +1,57 @@
+substitutions:
+  sensor_name_scd41: SCD41
+  sensor_temperature_id_scd41: scd41_temperature
+  sensor_humidity_id_scd41: scd41_humidity
+  sensor_co2_id_scd41: scd41_co2
+
+sensor:
+  - platform: scd4x
+    id: scd41
+    i2c_id: bus_a
+    co2:
+      name: "${sensor_name_scd41} CO2"
+      id: $sensor_co2_id_scd41
+    temperature:
+      name: "${sensor_name_scd41} Temperature"
+      id: $sensor_temperature_id_scd41
+      accuracy_decimals: 1
+    humidity:
+      name: "${sensor_name_scd41} Humidity"
+      id: $sensor_humidity_id_scd41
+      accuracy_decimals: 1
+      filters:
+        - offset: 8.8
+    automatic_self_calibration: false
+    measurement_mode: low_power_periodic # default: periodic
+    temperature_offset: 1.9 # default: 4
+
+number:
+  - platform: template
+    name: "${sensor_name_scd41} Calibr. Value"
+    id: calibr_value
+    entity_category: config
+    unit_of_measurement: ppm
+    initial_value: 420
+    min_value: 400
+    max_value: 800
+    step: 10
+    optimistic: true
+
+button:
+  - platform: template
+    name: "${sensor_name_scd41} Forced Calibration"
+    id: perform_forced_calibration
+    entity_category: config
+    on_press:
+      then:
+        - scd4x.perform_forced_calibration:
+            id: scd41
+            value: !lambda "return id(calibr_value).state;"
+
+  - platform: template
+    name: "${sensor_name_scd41} Factory Reset"
+    id: factory_reset
+    entity_category: config
+    on_press:
+      then:
+        - scd4x.factory_reset: scd41

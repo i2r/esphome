@@ -1,0 +1,33 @@
+substitutions:
+  sensor_name_bme280: BME280
+  sensor_pressure_id_bme280: bme280_pressure
+  sensor_temperature_id_bme280: bme280_temperature
+  sensor_humidity_id_bme280: bme280_humidity
+
+sensor:
+  - platform: bme280
+    id: bme280sensor
+    i2c_id: bus_b
+    pressure:
+      name: "${sensor_name_bme280} Pressure"
+      id: $sensor_pressure_id_bme280
+      oversampling: 2x
+      unit_of_measurement: "mmHg"
+      accuracy_decimals: 0
+      filters:
+        - multiply: 0.75006375541921
+        - offset: 4
+    temperature:
+      name: "${sensor_name_bme280} Temperature"
+      id: $sensor_temperature_id_bme280
+      oversampling: 1x
+      filters:
+        - offset: -1.1
+    humidity:
+      name: "${sensor_name_bme280} Humidity"
+      id: $sensor_humidity_id_bme280
+      oversampling: 2x
+      filters:
+        - offset: 12.9
+    address: 0x76
+    update_interval: 60s

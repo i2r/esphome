@@ -1,0 +1,49 @@
+substitutions:
+  # Core
+  node_name: ircontrol
+  name: "IR Control"
+  board: lolin_s2_mini
+
+  # Climate
+  climate_name: "${name} Toshiba AC"
+  climate_sensor_id: climate_sensor_temperature
+
+  # Media
+  media_name_lg450ug: "${name} PH450"
+
+  # Sensor
+  sensor_name_scd41: "${name} SCD41"
+  sensor_temperature_id_scd41: $climate_sensor_id
+  sensor_name_bme280: "${name} BME280"
+
+esp32:
+  board: $board
+
+packages:
+  ir_projector_lg450ug: !include packages/ir_projector_lg450ug.yaml
+  ir_toshiba_ac: !include packages/ir_toshiba_ac.yaml
+
+  sensor_scd41: !include packages/sensor_scd41.yaml
+  sensor_bme280: !include packages/sensor_bme280.yaml
+
+  framework_idf: !include packages/framework_idf.yaml
+  base: !include packages/base.yaml
+
+# Enable logging
+logger:
+
+i2c:
+  # i2c bus for scd4x
+  - id: bus_a
+    sda: 9
+    scl: 11
+    scan: true
+  # i2c bus for BME280
+  - id: bus_b
+    sda: 5
+    scl: 7
+    scan: true
+
+remote_transmitter:
+  pin: 12
+  carrier_duty_percent: 50%

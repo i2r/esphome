@@ -1,0 +1,214 @@
+substitutions:
+  media_name_lg450ug: LG450UG
+
+button:
+  #
+  # **********************************
+  # LG PH450UG / IR Remote AKB72913325 
+  # **********************************
+  #
+  # Power/Input/USB
+  - platform: template
+    name: "${media_name_lg450ug} Power"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F0B54A
+        nbits: 32
+  - platform: template
+    name: "${media_name_lg450ug} Input"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F0F708
+        nbits: 32
+  - platform: template
+    name: "${media_name_lg450ug} USB"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F03EC1
+        nbits: 32
+
+  # Volume
+  - platform: template
+    name: "${media_name_lg450ug} Volume Up"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F040BF
+        nbits: 32
+  - platform: template
+    name: "${media_name_lg450ug} Volume Down"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F0C03F
+        nbits: 32
+
+  # My Media
+  - platform: template
+    name: "${media_name_lg450ug} Page Up"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F000FF
+        nbits: 32
+  - platform: template
+    name: "${media_name_lg450ug} Page Down"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F0807F
+        nbits: 32
+
+  # Mute/Blank/Ratio
+  - platform: template
+    name: "${media_name_lg450ug} Mute"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F0906F
+        nbits: 32
+  - platform: template
+    name: "${media_name_lg450ug} Blank"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F021DE
+        nbits: 32
+  - platform: template
+    name: "${media_name_lg450ug} Ratio"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F09E61
+        nbits: 32
+
+  # Settings/Keystone/Q.Menu
+  - platform: template
+    name: "${media_name_lg450ug} Settings"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F0C23D
+        nbits: 32
+  - platform: template
+    name: "${media_name_lg450ug} Keystone"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F025DA
+        nbits: 32
+  - platform: template
+    name: "${media_name_lg450ug} QMenu"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F0A25D
+        nbits: 32
+
+  # Disk Ok/Up/Right/Down/Left
+  - platform: template
+    name: "${media_name_lg450ug} Disk Ok"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F022DD
+        nbits: 32
+  - platform: template
+    name: "${media_name_lg450ug} Disk Up"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F002FD
+        nbits: 32
+  - platform: template
+    name: "${media_name_lg450ug} Disk Right"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F0609F
+        nbits: 32
+  - platform: template
+    name: "${media_name_lg450ug} Disk Down"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F0827D
+        nbits: 32
+  - platform: template
+    name: "${media_name_lg450ug} Disk Left"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F0E01F
+        nbits: 32
+
+  # Exit/Still/Back
+  - platform: template
+    name: "${media_name_lg450ug} Exit"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F0DA25
+        nbits: 32
+  - platform: template
+    name: "${media_name_lg450ug} Still"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F03DC2
+        nbits: 32
+  - platform: template
+    name: "${media_name_lg450ug} Back"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F014EB
+        nbits: 32
+
+  # Multimedia Backward/PlayPause/Forward
+  - platform: template
+    name: "${media_name_lg450ug} Multimedia Backward"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F0F10E
+        nbits: 32
+  - platform: template
+    name: "${media_name_lg450ug} Multimedia PlayPause"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F05DA2
+        nbits: 32
+  - platform: template
+    name: "${media_name_lg450ug} Multimedia Forward"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F0718E
+        nbits: 32
+
+  # Multimedia 3D/Stop/LR
+  - platform: template
+    name: "${media_name_lg450ug} Multimedia 3D"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F03BC4
+        nbits: 32
+  - platform: template
+    name: "${media_name_lg450ug} Multimedia Stop"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F08D72
+        nbits: 32
+  - platform: template
+    name: "${media_name_lg450ug} Multimedia LR"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F0BB44
+        nbits: 32
+
+  # Multimedia Red/Green/Yellow/Blue
+  - platform: template
+    name: "${media_name_lg450ug} Multimedia Red"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F04EB1
+        nbits: 32
+  - platform: template
+    name: "${media_name_lg450ug} Multimedia Green"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F08E71
+        nbits: 32
+  - platform: template
+    name: "${media_name_lg450ug} Multimedia Yellow"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F0C639
+        nbits: 32
+  - platform: template
+    name: "${media_name_lg450ug} Multimedia Blue"
+    on_press:
+      remote_transmitter.transmit_lg:
+        data: 0x20F08679
+        nbits: 32

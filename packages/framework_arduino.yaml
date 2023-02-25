@@ -1,0 +1,8 @@
+substitutions:
+  framework_type: arduino
+
+esp32:
+  framework:
+    type: $framework_type
+
+captive_portal:

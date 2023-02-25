@@ -1,0 +1,6 @@
+substitutions:
+  framework_type: esp-idf
+
+esp32:
+  framework:
+    type: $framework_type

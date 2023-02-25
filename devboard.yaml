@@ -1,0 +1,46 @@
+substitutions:
+  node_name: devboard
+  name: DevBoard
+  board: esp32doit-devkit-v1
+
+packages:
+  framework_arduino: !include packages/framework_arduino.yaml
+  base: !include packages/base.yaml
+
+# Enable logging
+logger:
+
+light:
+  - platform: status_led
+    name: "${name} Switch state"
+    pin: 2
+    restore_mode: RESTORE_DEFAULT_OFF
+
+remote_receiver:
+  pin:
+    number: GPIO19
+    inverted: true
+  idle: 500ms
+  dump: raw
+
+# i2c:
+#   sda: 21
+#   scl: 22
+#   scan: true
+#   id: bus_a
+
+# sensor:
+#   - platform: bme280
+#     temperature:
+#       name: "${name} Temperature"
+#       oversampling: 2x
+#     pressure:
+#       name: "${name} Pressure"
+#       unit_of_measurement: "mmHg"
+#       accuracy_decimals: 0
+#       filters:
+#         - multiply: 0.75006375541921
+#     humidity:
+#       name: "${name} Humidity"
+#     address: 0x76
+#     update_interval: 60s

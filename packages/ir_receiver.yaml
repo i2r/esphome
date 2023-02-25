@@ -1,0 +1,11 @@
+substitutions:
+  pin_number: 36
+
+logger:
+
+remote_receiver:
+  pin:
+    number: $pin_number
+    inverted: true
+  dump: all #raw
+  memory_blocks: 2

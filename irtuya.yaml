@@ -1,0 +1,40 @@
+substitutions:
+  # Core
+  node_name: irtuya
+  name: "IR Tuya"
+  board: generic-bk7231n-qfn32-tuya
+
+  # Climate
+  climate_name: "${name} Toshiba AC"
+  climate_sensor_id: climate_temp_sensor
+
+libretuya:
+  board: $board
+  framework:
+    version: dev
+
+packages:
+  ir_toshiba_ac: !include packages/ir_toshiba_ac.yaml
+
+  base: !include packages/base.yaml
+
+wifi:
+  output_power: 20dB
+  fast_connect: true
+
+  # Changing node name https://esphome.io/components/esphome.html#changing-esphome-node-name
+  # use_address: ircontrol.local
+
+captive_portal:
+
+# Enable logging
+logger:
+
+remote_transmitter:
+  pin: P7
+  carrier_duty_percent: 50%
+
+sensor:
+  - platform: homeassistant
+    id: $climate_sensor_id
+    entity_id: sensor.magicair_temperature
