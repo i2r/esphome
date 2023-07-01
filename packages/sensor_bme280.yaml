@@ -8,6 +8,8 @@ sensor:
   - platform: bme280
     id: bme280sensor
     i2c_id: bus_b
+    address: 0x76
+    update_interval: 60s
     pressure:
       name: "${sensor_name_bme280} Pressure"
       id: $sensor_pressure_id_bme280
@@ -29,5 +31,3 @@ sensor:
       oversampling: 2x
       filters:
         - offset: 12.9
-    address: 0x76
-    update_interval: 60s

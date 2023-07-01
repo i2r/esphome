@@ -7,12 +7,20 @@ esp32:
   board: $board
 
 packages:
-  ## Enable additional WiFi signal sensor. Comment next line to disable.
-  wifi_signal: github://dentra/esphome-tion/packages/wifi_signal.yaml
-  ## Enable additional Uptime sensor. Comment next line to disable.
-  uptime: github://dentra/esphome-tion/packages/uptime.yaml
-  ## Uncomment next line to enable additional restart button.
-  # restart: github://dentra/esphome-tion/packages/restart.yaml
+  tion:
+    url: https://github.com/dentra/esphome-tion
+    ref: master # cant use substitutions here
+    files:
+      ## Enable additional WiFi signal sensor. Comment next line to disable.
+      - packages/wifi_signal.yaml
+      ## Enable additional Uptime sensor. Comment next line to disable.
+      - packages/uptime.yaml
+      ## Uncomment next line to enable additional restart button.
+      # - packages/restart.yaml
+      ## Uncomment next line to enable monitor internal ESP temperature.
+      # - packages/esp32_temperature.yaml
+      ## Uncomment next line to enable additional debug information.
+      # - packages/debug.yaml
 
   # framework_arduino: !include packages/framework_arduino.yaml
   framework_idf: !include packages/framework_idf.yaml

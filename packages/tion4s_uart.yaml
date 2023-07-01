@@ -1,26 +1,26 @@
 substitutions:
-  tion_version: 2022.10.1
-  tion_source: github://dentra/esphome-tion@$tion_version
+  project_branch: master
+  project_version: 2023.06-master
+  project_source: github://dentra/esphome-tion@$project_branch
 
 esphome:
   project:
     name: "dentra.tion"
-    version: "$tion_version ($framework_type)"
+    version: "$project_version ($framework_type)"
+  min_version: "2023.5.5" # can't use substitutions here
 
 external_components:
-  - source: github://dentra/esphome-components
-    components: [crash_info, etl]
-  - source: $tion_source
+  - source: github://dentra/esphome-components@2023.2.0
+    components: [crash_info, etl, otax, vport, esp32_usb_dis]
+    refresh: 1d
+  - source: $project_source
+    refresh: 12h
 
 # Enable logging
 logger:
 
 vport:
-  - platform: tion_uart
-    # Optional, How often query device state. Default: 10s.
-    update_interval: 10s
-    # Optional, heartbeat interval. Default: 3s.
-    heartbeat_interval: 5s
+  - platform: tion_4s_uart
 
 climate:
   - platform: tion_4s
@@ -28,41 +28,41 @@ climate:
     # Optional, Buzzer control switch.
     buzzer:
       name: "${name} Buzzer"
-      # Optional, Led control switch.
+    # Optional, Led control switch.
     led:
       name: "${name} Led"
-      # Optional, Recirculation control switch.
+    # Optional, Recirculation control switch.
     recirculation:
       name: "${name} Recirculation"
-      # Optional, Temperatire of air before heater, °C (celsius).
+    # Optional, Temperatire of air before heater, °C (celsius).
     outdoor_temperature:
       name: "${name} Outdoor Temperature"
-      # Optional, Heater power, W (watt).
+    # Optional, Heater power, W (watt).
     heater_power:
       name: "${name} Heater power"
-      # Optional, Total airflow counter, m³ (cubic meters).
+    # Optional, Total airflow counter, m³ (cubic meters).
     airflow_counter:
       name: "${name} Airflow counter"
-      # Optional, Filter time left counter, days.
+    # Optional, Filter time left counter, days.
     filter_time_left:
       name: "${name} Filter Time Left"
-      # Optional, Filter warning state.
+    # Optional, Filter warning state.
     filter_warnout:
       name: "${name} Filter Warnout"
-      # Optional, Tion firmware version.
+    # Optional, Tion firmware version.
     version:
       name: "${name} Version"
-      # Optional, Enable presets. Default: <empty>
-      # Awailable configurable presets: home, away, boost, comfort, eco, sleep, activity.
-      # Defaults:
-      #   home    : { fan_speed: 2, target_temperature: 20, mode: heat }
-      #   away    : { fan_speed: 1, target_temperature: 10, mode: fan_only }
-      #   boost   : { fan_speed: 6, target_temperature: 10, mode: fan_only }
-      #   comfort : { fan_speed: 2, target_temperature: 23, mode: heat }
-      #   eco     : { fan_speed: 1, target_temperature: 16, mode: heat }
-      #   sleep   : { fan_speed: 1, target_temperature: 18, mode: heat }
-      #   activity: { fan_speed: 3, target_temperature: 18, mode: heat }
-      # Boost is a special preset that runs for a period defined by boost_time and then switches back to the previous preset.
+    # Optional, Enable presets. Default: <empty>
+    # Awailable configurable presets: home, away, boost, comfort, eco, sleep, activity.
+    # Defaults:
+    #   home    : { fan_speed: 2, target_temperature: 20, mode: heat }
+    #   away    : { fan_speed: 1, target_temperature: 10, mode: fan_only }
+    #   boost   : { fan_speed: 6, target_temperature: 10, mode: fan_only }
+    #   comfort : { fan_speed: 2, target_temperature: 23, mode: heat }
+    #   eco     : { fan_speed: 1, target_temperature: 16, mode: heat }
+    #   sleep   : { fan_speed: 1, target_temperature: 18, mode: heat }
+    #   activity: { fan_speed: 3, target_temperature: 18, mode: heat }
+    # Boost is a special preset that runs for a period defined by boost_time and then switches back to the previous preset.
     presets:
       # enable and override "home" preset
       home: { fan_speed: 2, target_temperature: 18, mode: heat }
@@ -72,9 +72,14 @@ climate:
       boost: { fan_speed: 4, target_temperature: 18, mode: heat }
       # enable and override "sleep" preset
       sleep: { fan_speed: 1, target_temperature: 18, mode: heat }
-      # Optional, configure boost time
+    # Optional, configure boost time
     boost_time:
       name: "${name} Boost Time"
-      # Optional, display remaining boost time
+    # Optional, display remaining boost time
     boost_time_left:
       name: "${name} Boost Time Left"
+    # Optional, How often query device state. Default: 10s.
+    update_interval: 10s
+    # Optional, reset filter button
+    reset_filter:
+      name: "${name} Reset Filter"

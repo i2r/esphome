@@ -1,6 +1,36 @@
 substitutions:
   media_name_lg450ug: LG450UG
 
+api:
+  services:
+    - service: send_lg_command
+      variables:
+        command: int
+      then:
+        - remote_transmitter.transmit_lg:
+            data: !lambda 'return command;'
+            nbits: 32
+    - service: send_lg_command_x5
+      variables:
+        command: int
+      then:
+        - remote_transmitter.transmit_lg:
+            data: !lambda 'return command;'
+            nbits: 32
+            repeat:
+              times: 5
+              wait_time: 0.13s
+    - service: send_lg_command_x10
+      variables:
+        command: int
+      then:
+        - remote_transmitter.transmit_lg:
+            data: !lambda 'return command;'
+            nbits: 32
+            repeat:
+              times: 10
+              wait_time: 0.13s
+
 button:
   #
   # **********************************

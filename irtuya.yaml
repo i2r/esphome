@@ -8,7 +8,7 @@ substitutions:
   climate_name: "${name} Toshiba AC"
   climate_sensor_id: climate_temp_sensor
 
-libretuya:
+libretiny:
   board: $board
   framework:
     version: dev
@@ -37,4 +37,5 @@ remote_transmitter:
 sensor:
   - platform: homeassistant
     id: $climate_sensor_id
-    entity_id: sensor.magicair_temperature
+    # entity_id: sensor.cgllc_cgdn1_5775_temperature # Midroom
+    entity_id: sensor.magicair_temperature # Bedroom
