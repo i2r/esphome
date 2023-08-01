@@ -7,11 +7,13 @@ substitutions:
   # Climate
   climate_name: "${name} Toshiba AC"
   climate_sensor_id: climate_temp_sensor
+  # climate_sensor_entity_id: sensor.air_monitor_lite_5777_temperature # Midroom
+  climate_sensor_entity_id: sensor.magicair_temperature # Bedroom
 
-libretiny:
+bk72xx:
   board: $board
   framework:
-    version: dev
+    version: latest
 
 packages:
   ir_toshiba_ac: !include packages/ir_toshiba_ac.yaml
@@ -37,5 +39,4 @@ remote_transmitter:
 sensor:
   - platform: homeassistant
     id: $climate_sensor_id
-    # entity_id: sensor.cgllc_cgdn1_5775_temperature # Midroom
-    entity_id: sensor.magicair_temperature # Bedroom
+    entity_id: $climate_sensor_entity_id
