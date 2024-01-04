@@ -7,13 +7,11 @@ substitutions:
   # Climate
   climate_name: "${name} Toshiba AC"
   climate_sensor_id: climate_temp_sensor
-  # climate_sensor_entity_id: sensor.air_monitor_lite_5777_temperature # Midroom
+  # climate_sensor_entity_id: sensor.efekta_air_monitor_midroom_temperature # Midroom
   climate_sensor_entity_id: sensor.magicair_temperature # Bedroom
 
 bk72xx:
   board: $board
-  framework:
-    version: latest
 
 packages:
   ir_toshiba_ac: !include packages/ir_toshiba_ac.yaml
