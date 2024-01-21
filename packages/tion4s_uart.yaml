@@ -81,4 +81,4 @@ climate:
     # Optional, reset filter button
     reset_filter:
       name: "${name} Reset Filter"
-    enable_mode_heat_cool: true
+    # enable_mode_heat_cool: true
