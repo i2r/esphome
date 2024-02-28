@@ -1,5 +1,5 @@
 substitutions:
-  project_version: "2024.1.2"
+  project_version: "2024.1.3"
   # name of the node.
   node_name: tioncontrol
   name: TionControl
@@ -13,7 +13,7 @@ substitutions:
 packages:
   tion:
     url: https://github.com/dentra/esphome-tion
-    ref: 2024.1.2 # cant use substitutions here
+    ref: 2024.1.3 # cant use substitutions here
     files:
       ## Enable additional WiFi signal sensor. Comment next line to disable.
       - packages/wifi_signal.yaml
@@ -32,7 +32,7 @@ packages:
       ## Common configuration settings. Do not comment or move or remove.
       - packages/base.yaml
       # change to esp32_s3.yaml/esp32_c3.yaml to use with ESP32-S2/ESP32-C3 chip or change to esp32.yaml to use with ESP32 chip.
-      # - packages/esp32_s2.yaml
+      - packages/esp32_s2.yaml
       ## Uncomment next line to enable additional internal timers support.
       # - packages/tion_4s_timers.yaml
       ## Uncomment next line to enable monitor internal ESP temperature.
@@ -41,9 +41,6 @@ packages:
       # - packages/debug.yaml
 
   base: !include packages/base.yaml
-
-  # FIXME: quick override for esp32_s2.yaml
-  esp32_s2: !include packages/esp32_s2.yaml
 
 # Virtual port configuration
 vport:
@@ -142,3 +139,6 @@ climate:
     state_timeout: 3s
     # Optional, Timeout to combine update operations. Default: 200ms.
     batch_timeout: 200ms
+    # Optional, Reports Tion's errors (EC) and warnings (WS).
+    errors:
+      name: "Errors"
