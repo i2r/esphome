@@ -1,0 +1,62 @@
+substitutions:
+  # Core
+  node_name: xgimiremote
+  name: "XGIMI Remote"
+  board: lolin_c3_mini
+
+esp32:
+  board: $board
+
+esphome:
+  platformio_options:
+    board_build.flash_mode: dio
+
+wifi:
+  fast_connect: true
+  on_connect:
+    - ble.enable
+  on_disconnect:
+    - ble.disable
+
+packages:
+  framework_idf: !include packages/framework_idf.yaml
+  base: !include packages/base.yaml
+
+# Enable logging
+logger:
+  # level: VERBOSE
+  baud_rate: 0
+
+esp32_ble:
+  id: ble
+  enable_on_boot: false
+
+esp32_ble_server:
+
+# Simulate Original Remote PowerOn XGIMI M1 Projector
+# see https://github.com/manymuch/Xgimi-4-Home-Assistant/issues/34#issuecomment-1925571960
+button:
+  - platform: template
+    name: Power On
+    icon: "mdi:power"
+    on_press:
+      # - if:
+      #     condition:
+      #       not: ble.enabled
+      #     then:
+      #       - ble.enable
+      - repeat:
+          count: 3
+          then:
+            - lambda: |-
+                std::vector<uint8_t> data = {0x46, 0x00, 0x68, 0x9e, 0xe1, 0xd6, 0xc1, 0x84, 0x18, 0xff, 0xff, 0xff, 0x30, 0x43, 0x52, 0x4b, 0x54, 0x4d};
+                id(ble).advertising_set_manufacturer_data(data);
+            - delay: 1s
+            - lambda: |-
+                std::vector<uint8_t> data = {};
+                id(ble).advertising_set_manufacturer_data(data);
+            - delay: 1s
+      # - if:
+      #     condition: ble.enabled
+      #     then:
+      #       - ble.disable

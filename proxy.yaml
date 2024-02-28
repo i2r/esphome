@@ -1,0 +1,39 @@
+substitutions:
+  # Core
+  node_name: btproxy
+  name: "BT Proxy"
+  board: lolin_c3_mini
+
+esp32:
+  board: $board
+
+esphome:
+  platformio_options:
+    board_build.flash_mode: dio
+  on_boot:
+    priority: 250
+    then:
+      - delay: 15s
+      - lambda: |-
+          id(ble_tracker).set_scan_continuous(true);
+          id(ble_tracker).start_scan();
+
+wifi:
+  fast_connect: true
+
+packages:
+  framework_idf: !include packages/framework_idf.yaml
+  base: !include packages/base.yaml
+
+# Enable logging
+logger:
+  # level: VERBOSE
+
+esp32_ble_tracker:
+  id: ble_tracker
+  scan_parameters:
+    continuous: false
+    interval: 211ms
+    window: 120ms
+
+bluetooth_proxy:
