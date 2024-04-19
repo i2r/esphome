@@ -37,25 +37,35 @@ esp32_ble_server:
 # see https://github.com/manymuch/Xgimi-4-Home-Assistant/issues/34#issuecomment-1925571960
 button:
   - platform: template
-    name: Power On
+    name: "${name} Power On"
     icon: "mdi:power"
     on_press:
+      - lambda: |-
+          std::vector<uint8_t> data = {0x46, 0x00, 0x68, 0x9e, 0xe1, 0xd6, 0xc1, 0x84, 0x18, 0xff, 0xff, 0xff, 0x30, 0x43, 0x52, 0x4b, 0x54, 0x4d};
+          id(ble).advertising_set_manufacturer_data(data);
+      - delay: 5s
+      - lambda: |-
+          std::vector<uint8_t> data = {};
+          id(ble).advertising_set_manufacturer_data(data);
       # - if:
       #     condition:
       #       not: ble.enabled
       #     then:
       #       - ble.enable
-      - repeat:
-          count: 3
-          then:
-            - lambda: |-
-                std::vector<uint8_t> data = {0x46, 0x00, 0x68, 0x9e, 0xe1, 0xd6, 0xc1, 0x84, 0x18, 0xff, 0xff, 0xff, 0x30, 0x43, 0x52, 0x4b, 0x54, 0x4d};
-                id(ble).advertising_set_manufacturer_data(data);
-            - delay: 1s
-            - lambda: |-
-                std::vector<uint8_t> data = {};
-                id(ble).advertising_set_manufacturer_data(data);
-            - delay: 1s
+      # - repeat:
+      #     count: 3
+      #     then:
+      #       - lambda: |-
+      #                         #                            ..increment                                                 ..value
+      #                         # Screensaver  0x46, 0x00, 0x15, 0x9e, 0xe1, 0xd6, 0xc1, 0x84, 0x18, 0xff, 0xff, 0xff, 0x36, 0x43, 0x52, 0x4b, 0x54, 0x4d
+      #                         # Programmable 0x46, 0x00, 0x17, 0x9e, 0xe1, 0xd6, 0xc1, 0x84, 0x18, 0xff, 0xff, 0xff, 0x37, 0x43, 0x52, 0x4b, 0x54, 0x4d
+      #           std::vector<uint8_t> data = {0x46, 0x00, 0x68, 0x9e, 0xe1, 0xd6, 0xc1, 0x84, 0x18, 0xff, 0xff, 0xff, 0x30, 0x43, 0x52, 0x4b, 0x54, 0x4d};
+      #           id(ble).advertising_set_manufacturer_data(data);
+      #       - delay: 1s
+      #       - lambda: |-
+      #           std::vector<uint8_t> data = {};
+      #           id(ble).advertising_set_manufacturer_data(data);
+      #       - delay: 1s
       # - if:
       #     condition: ble.enabled
       #     then:
