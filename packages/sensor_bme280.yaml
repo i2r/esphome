@@ -5,7 +5,7 @@ substitutions:
   sensor_humidity_id_bme280: bme280_humidity
 
 sensor:
-  - platform: bme280
+  - platform: bme280_i2c
     id: bme280sensor
     i2c_id: bus_b
     address: 0x76

@@ -8,7 +8,9 @@ substitutions:
   climate_name: "${name} Toshiba AC"
   climate_sensor_id: climate_temp_sensor
   # climate_sensor_entity_id: sensor.efekta_air_monitor_midroom_temperature # Midroom
-  climate_sensor_entity_id: sensor.magicair_temperature # Bedroom
+  # wifi_static_ip: 192.168.1.213 # Midroom
+  climate_sensor_entity_id: sensor.efekta_air_monitor_bedroom_temperature # Bedroom
+  wifi_static_ip: 192.168.1.212 # Bedroom
 
 bk72xx:
   board: $board
@@ -21,6 +23,11 @@ packages:
 wifi:
   output_power: 20dB
   fast_connect: true
+
+  manual_ip:
+    static_ip: $wifi_static_ip
+    gateway: 192.168.1.1
+    subnet: 255.255.254.0
 
   # Changing node name https://esphome.io/components/esphome.html#changing-esphome-node-name
   # use_address: ircontrol.local

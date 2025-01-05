@@ -8,6 +8,7 @@ sensor:
   - platform: scd4x
     id: scd41
     i2c_id: bus_a
+    address: 0x62
     co2:
       name: "${sensor_name_scd41} CO2"
       id: $sensor_co2_id_scd41
