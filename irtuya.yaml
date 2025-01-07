@@ -22,7 +22,7 @@ packages:
 
 wifi:
   output_power: 20dB
-  fast_connect: true
+  # fast_connect: true
 
   manual_ip:
     static_ip: $wifi_static_ip
